@@ -31,7 +31,7 @@ RUN case "$(uname -m)" in \
 RUN "python${PYTHON_VERSION}" -m venv "${GADK_VENV}" \
     && "${GADK_VENV}/bin/python" -m pip install --upgrade pip setuptools wheel \
     && "${GADK_VENV}/bin/python" -m pip install "google-adk==${GOOGLE_ADK_VERSION}" \
-    && chown -R vscode:vscode "${GADK_VENV}"
+    && chmod -R a+rX "${GADK_VENV}"
 
 RUN npm install -g \
         "@openai/codex@${CODEX_CLI_VERSION}" \
