@@ -1,0 +1,42 @@
+{
+  "name": "gadk-sandbox",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "GOOGLE_ADK_VERSION": "1.31.1",
+      "CODEX_CLI_VERSION": "0.87.0",
+      "FIRECRAWL_CLI_VERSION": "1.19.6"
+    }
+  },
+  "remoteUser": "node",
+  "containerEnv": {
+    "GADK_VENV": "/opt/gadk-venv"
+  },
+  "remoteEnv": {
+    "PATH": "/opt/gadk-venv/bin:${containerEnv:PATH}",
+    "GOOGLE_API_KEY": "${localEnv:GOOGLE_API_KEY}",
+    "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
+    "FIRECRAWL_API_KEY": "${localEnv:FIRECRAWL_API_KEY}"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/opt/gadk-venv/bin/python",
+        "python-envs.defaultEnvManager": "ms-python.python:venv",
+        "python-envs.defaultPackageManager": "ms-python.python:pip",
+        "python-envs.pythonProjects": [
+          {
+            "path": ".",
+            "envManager": "ms-python.python:venv",
+            "packageManager": "ms-python.python:pip"
+          }
+        ]
+      }
+    }
+  },
+  "postCreateCommand": "python --version && adk --version && codex --version && firecrawl --version"
+}
