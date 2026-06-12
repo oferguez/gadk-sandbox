@@ -21,10 +21,15 @@ from google.adk.apps.app import App, ResumabilityConfig
 from google.adk.tools.function_tool import FunctionTool
 from google.adk.runners import InMemoryRunner
 
+from env_loader import load_env_local
 
+load_env_local()
+
+if "GOOGLE_API_KEY" not in os.environ and "GEMINI_API_KEY" in os.environ:
+    os.environ["GOOGLE_API_KEY"] = os.environ["GEMINI_API_KEY"]
 
 if "GOOGLE_API_KEY" not in os.environ:
-    raise RuntimeError("GOOGLE_API_KEY must be set in the environment.")
+    raise RuntimeError("GOOGLE_API_KEY or GEMINI_API_KEY must be set in the environment.")
 
 print("✅ ADK components imported successfully.")
 
@@ -52,6 +57,7 @@ mcp_image_server = McpToolset(
     )
 )
 print(f"✅ MCP Tool created: {mcp_image_server}")
+
 
 # Create image agent with MCP integration
 image_agent = LlmAgent(
@@ -93,3 +99,5 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+root_agent = image_agent

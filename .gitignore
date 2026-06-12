@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+.firecrawl/
 build/
 outputs/
 dist/
@@ -35,6 +36,9 @@ ENV/
 # Environment files
 .env
 .env.*
+.env_local
+.env_local.*
+!.env.example
 
 # Test, coverage, and type-checking caches
 .coverage
@@ -55,9 +59,11 @@ htmlcov/
 # Local app state
 .adk/
 .codex
+.codex/
 *.db
 *.sqlite
 *.sqlite3
+*.log
 
 # IDEs and editors
 .idea/
