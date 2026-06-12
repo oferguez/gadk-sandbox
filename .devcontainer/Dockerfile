@@ -21,7 +21,7 @@ RUN apt-get update \
 RUN "python${PYTHON_VERSION}" -m venv "${GADK_VENV}" \
     && "${GADK_VENV}/bin/python" -m pip install --upgrade pip setuptools wheel \
     && "${GADK_VENV}/bin/python" -m pip install "google-adk==${GOOGLE_ADK_VERSION}" \
-    && chown -R node:node "${GADK_VENV}"
+    && chown -R vscode:vscode "${GADK_VENV}"
 
 RUN npm install -g \
         "@openai/codex@${CODEX_CLI_VERSION}" \

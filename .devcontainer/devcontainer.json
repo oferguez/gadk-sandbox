@@ -8,7 +8,7 @@
       "FIRECRAWL_CLI_VERSION": "1.19.6"
     }
   },
-  "remoteUser": "node",
+  "remoteUser": "vscode",
   "containerEnv": {
     "GADK_VENV": "/opt/gadk-venv"
   },
