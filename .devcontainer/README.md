@@ -18,12 +18,14 @@ Set repository or user Codespaces secrets for any credentials you need:
 
 The image includes `ttyd` for a terminal-only browser page.
 
-Start it inside the codespace:
+It starts automatically when the codespace starts. Codespaces forwards port `7681` as private. Open the forwarded port from the Codespaces **Ports** tab or use the port URL shown by GitHub.
+
+If you need to restart it manually:
 
 ```bash
 start-browser-terminal
 ```
 
-Codespaces forwards port `7681` as private. Open the forwarded port from the Codespaces **Ports** tab or use the port URL shown by GitHub.
-
 Keep the port visibility private. This terminal is a shell in your codespace.
+
+If `start-browser-terminal` is not found, rebuild the codespace so it uses the latest devcontainer image.

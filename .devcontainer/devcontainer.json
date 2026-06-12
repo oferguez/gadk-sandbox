@@ -48,5 +48,6 @@
       }
     }
   },
-  "postCreateCommand": "python --version && adk --version && codex --version && firecrawl --version"
+  "postCreateCommand": "python --version && adk --version && codex --version && firecrawl --version",
+  "postStartCommand": "pgrep -f 'ttyd .*7681' >/dev/null || nohup start-browser-terminal >/tmp/browser-terminal.log 2>&1 &"
 }
