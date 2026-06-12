@@ -15,6 +15,7 @@ RUN apt-get update \
         "python${PYTHON_VERSION}-dev" \
         python3-pip \
         graphviz \
+        ttyd \
     && rm -rf /var/lib/apt/lists/*
 
 RUN "python${PYTHON_VERSION}" -m venv "${GADK_VENV}" \
@@ -25,6 +26,9 @@ RUN "python${PYTHON_VERSION}" -m venv "${GADK_VENV}" \
 RUN npm install -g \
         "@openai/codex@${CODEX_CLI_VERSION}" \
         "firecrawl-cli@${FIRECRAWL_CLI_VERSION}"
+
+COPY bin/start-browser-terminal /usr/local/bin/start-browser-terminal
+RUN chmod +x /usr/local/bin/start-browser-terminal
 
 RUN python --version \
     && adk --version \

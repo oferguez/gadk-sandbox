@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "${CODESPACE_VSCODE_FOLDER:-/workspaces/gadk-sandbox}"
+
+exec ttyd \
+  --interface 127.0.0.1 \
+  --port "${BROWSER_TERMINAL_PORT:-7681}" \
+  --writable \
+  --check-origin \
+  bash -l
