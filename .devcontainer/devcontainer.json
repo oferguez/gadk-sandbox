@@ -5,7 +5,8 @@
     "args": {
       "GOOGLE_ADK_VERSION": "1.31.1",
       "CODEX_CLI_VERSION": "0.87.0",
-      "FIRECRAWL_CLI_VERSION": "1.19.6"
+      "FIRECRAWL_CLI_VERSION": "1.19.6",
+      "TTYD_VERSION": "1.7.7"
     }
   },
   "remoteUser": "vscode",
