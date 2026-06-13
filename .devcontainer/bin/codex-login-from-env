@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ -z "${OPENAI_API_KEY:-}" ]; then
+  echo "OPENAI_API_KEY is not set; skipping Codex login."
+  exit 0
+fi
+
+mkdir -p "${CODEX_HOME:-/root/.codex}"
+chmod 700 "${CODEX_HOME:-/root/.codex}" 2>/dev/null || true
+
+if codex login status >/tmp/codex-login-status.log 2>&1; then
+  echo "Codex login already configured."
+  exit 0
+fi
+
+if printf '%s\n' "$OPENAI_API_KEY" | codex login --with-api-key >/tmp/codex-login.log 2>&1; then
+  echo "Codex login configured from OPENAI_API_KEY."
+else
+  echo "Codex login failed; see /tmp/codex-login.log."
+fi

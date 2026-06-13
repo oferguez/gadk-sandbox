@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm
 
 ARG PYTHON_VERSION=3.11
 ARG GOOGLE_ADK_VERSION=1.31.1
-ARG CODEX_CLI_VERSION=0.87.0
+ARG CODEX_CLI_VERSION=latest
 ARG FIRECRAWL_CLI_VERSION=1.19.6
 ARG TTYD_VERSION=1.7.7
 
@@ -38,7 +38,8 @@ RUN npm install -g \
         "firecrawl-cli@${FIRECRAWL_CLI_VERSION}"
 
 COPY bin/start-browser-terminal /usr/local/bin/start-browser-terminal
-RUN chmod +x /usr/local/bin/start-browser-terminal
+COPY bin/codex-login-from-env /usr/local/bin/codex-login-from-env
+RUN chmod +x /usr/local/bin/start-browser-terminal /usr/local/bin/codex-login-from-env
 
 RUN python --version \
     && adk --version \
