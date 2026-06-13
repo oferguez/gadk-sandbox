@@ -25,7 +25,7 @@ echo "Installing Firecrawl Codex skills from firecrawl-cli..."
   firecrawl setup workflows --agent codex --global
 } >"$log_file" 2>&1 || {
   echo "Firecrawl skills installation failed; see $log_file."
-  exit 0
+  exit 1
 }
 
 if [ -f "$skills_dir/firecrawl/SKILL.md" ] && [ -f "$skills_dir/firecrawl-workflows/SKILL.md" ]; then
@@ -33,4 +33,5 @@ if [ -f "$skills_dir/firecrawl/SKILL.md" ] && [ -f "$skills_dir/firecrawl-workfl
   echo "Firecrawl Codex skills installed."
 else
   echo "Firecrawl setup completed but Codex skill files were not found in $skills_dir; see $log_file."
+  exit 1
 fi

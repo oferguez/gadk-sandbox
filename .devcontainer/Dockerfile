@@ -16,6 +16,7 @@ RUN apt-get update \
         "python${PYTHON_VERSION}-dev" \
         python3-pip \
         ca-certificates \
+        git \
         graphviz \
         wget \
     && rm -rf /var/lib/apt/lists/*
