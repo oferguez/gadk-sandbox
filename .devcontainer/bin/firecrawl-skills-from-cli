@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+codex_home="${CODEX_HOME:-/root/.codex}"
+skills_dir="${codex_home}/skills"
+marker="${codex_home}/.firecrawl-skills-installed"
+log_file="/tmp/firecrawl-skills-install.log"
+
+mkdir -p "$skills_dir"
+chmod 700 "$codex_home" 2>/dev/null || true
+
+if [ -f "$skills_dir/firecrawl/SKILL.md" ] && [ -f "$skills_dir/firecrawl-workflows/SKILL.md" ]; then
+  touch "$marker"
+  echo "Firecrawl Codex skills already installed."
+  exit 0
+fi
+
+if [ -f "$marker" ]; then
+  echo "Firecrawl skills marker exists but expected skill files are missing; reinstalling."
+fi
+
+echo "Installing Firecrawl Codex skills from firecrawl-cli..."
+{
+  firecrawl setup skills --agent codex --global
+  firecrawl setup workflows --agent codex --global
+} >"$log_file" 2>&1 || {
+  echo "Firecrawl skills installation failed; see $log_file."
+  exit 0
+}
+
+if [ -f "$skills_dir/firecrawl/SKILL.md" ] && [ -f "$skills_dir/firecrawl-workflows/SKILL.md" ]; then
+  touch "$marker"
+  echo "Firecrawl Codex skills installed."
+else
+  echo "Firecrawl setup completed but Codex skill files were not found in $skills_dir; see $log_file."
+fi

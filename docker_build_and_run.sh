@@ -23,7 +23,7 @@ case "$run_answer" in
             -v "$PWD:/workspaces/gadk-sandbox" \
             -w /workspaces/gadk-sandbox \
             gadk-sandbox-dev \
-            bash -lc 'codex-login-from-env && start-browser-terminal'
+            bash -lc 'firecrawl-skills-from-cli && codex-login-from-env && start-browser-terminal'
         ;;
     *)
         echo "Skipping run."

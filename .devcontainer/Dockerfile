@@ -39,7 +39,11 @@ RUN npm install -g \
 
 COPY bin/start-browser-terminal /usr/local/bin/start-browser-terminal
 COPY bin/codex-login-from-env /usr/local/bin/codex-login-from-env
-RUN chmod +x /usr/local/bin/start-browser-terminal /usr/local/bin/codex-login-from-env
+COPY bin/firecrawl-skills-from-cli /usr/local/bin/firecrawl-skills-from-cli
+RUN chmod +x \
+        /usr/local/bin/start-browser-terminal \
+        /usr/local/bin/codex-login-from-env \
+        /usr/local/bin/firecrawl-skills-from-cli
 
 RUN python --version \
     && adk --version \
